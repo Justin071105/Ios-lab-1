@@ -81,12 +81,19 @@ increment(getal1: &x, getal2: &y)
 print(x, "en ", y)
 
 //deel3
-
+enum StringConversionError: Error{
+    case nilParameter 
+    case emptyParameter
+}
 func getUpperLowerCount(str:String?) throws -> (String, String, Int){
-    if let str = str{
+    guard let str = str else{
+        throw StringConversionError.nilParameter
+    }
+    guard str == "" else{
+        throw StringConversionError.emptyParameter
+    }
         return (str.uppercased(), str.lowercased(), str.count)
     }
-    else{
-        
-    }
-}
+
+try getUpperLowerCount(str: nil)
+
