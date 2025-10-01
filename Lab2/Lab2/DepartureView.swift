@@ -6,21 +6,42 @@
 //
 
 import SwiftUI
-
 struct DepartureView: View {
+    let flightInfo: FlightInfo
     var body: some View {
-        Grid{
-            GridRow{
-                Text("flight")
-                Text("Destination")
+        HStack{
+            VStack{
+                Text(flightInfo.departureCityCode).foregroundColor(.accentColor).bold()
+                Text(flightInfo.departureCity)
+                Text(flightInfo.departureTime)
             }
-            GridRow{
-                Text("Departure")
+            VStack{
+                Image(systemName: "airplane")
+            }
+            VStack{
+                Text(flightInfo.arrivalCityCode).foregroundColor(.accentColor)
+                Text(flightInfo.arrivalCity)
+                Text(flightInfo.arrivalTime)
+            }
+        }
+        
+        HStack{
+            VStack{
+                Text("flight")
+                Text(flightInfo.flightCode)
+            }
+            VStack{
+                Text("gate")
+                Text(flightInfo.gate)
+            }
+            VStack{
+                Text("seat")
+                Text(flightInfo.seat)
             }
         }
     }
 }
 
 #Preview {
-    DepartureView()
+    DepartureView(flightInfo: FlightInfo(departureCityCode: "BRU", departureCity: "Brussels", departureTime: "8:15", arrivalCityCode: "BCN", arrivalCity: "Barcelona", arrivalTime: "11:15", flightCode: "SN23A", gate: "B23", seat: "27A", namePassenger: "Dirk Hostens", classPassenger: "Business", flightDate: "27/08/2024"))
 }
